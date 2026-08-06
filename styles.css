@@ -1,0 +1,361 @@
+/* ============================================================
+   AULA EJECUTIVA — Hoja de estilos
+   Paleta anclada en navy/teal (identidad MEP) con acento dorado
+   para la gamificación (puntos, insignias, niveles).
+   ============================================================ */
+
+:root {
+  --ink:      #0B2545;   /* navy profundo: cabeceras, texto fuerte */
+  --ink-2:    #12345C;   /* navy medio */
+  --teal:     #178A8A;   /* teal de marca */
+  --teal-dk:  #106B6B;   /* teal oscuro para hover */
+  --gold:     #F2A900;   /* acento de logro: puntos, insignias */
+  --gold-dk:  #C98A00;
+  --success:  #2E9E6B;   /* respuesta correcta */
+  --danger:   #D64545;   /* respuesta incorrecta */
+  --bg:       #F4F7FA;   /* fondo general frío */
+  --surface:  #FFFFFF;   /* tarjetas */
+  --line:     #E1E8EF;   /* bordes suaves */
+  --text:     #12263A;
+  --muted:    #5A6B7B;
+
+  --radius:   16px;
+  --radius-sm:10px;
+  --shadow:   0 8px 30px rgba(11, 37, 69, .08);
+  --shadow-hover: 0 14px 40px rgba(11, 37, 69, .16);
+
+  --font-display: 'Space Grotesk', system-ui, sans-serif;
+  --font-body: 'Inter', system-ui, sans-serif;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  font-family: var(--font-body);
+  color: var(--text);
+  background: var(--bg);
+  margin: 0;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+h1, h2, h3, h4, .display, .navbar-brand {
+  font-family: var(--font-display);
+  letter-spacing: -0.01em;
+}
+
+main { flex: 1 1 auto; }
+
+a { text-decoration: none; }
+
+/* ---------- NAVBAR ---------- */
+.ae-nav {
+  background: var(--ink);
+  padding-top: .6rem;
+  padding-bottom: .6rem;
+  box-shadow: 0 2px 20px rgba(11,37,69,.25);
+}
+.ae-logo {
+  display: inline-grid;
+  place-items: center;
+  width: 38px; height: 38px;
+  background: linear-gradient(135deg, var(--teal), var(--gold));
+  color: #fff;
+  border-radius: 10px;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: .95rem;
+}
+.ae-brand-text {
+  color: #fff;
+  font-weight: 600;
+  font-size: 1.15rem;
+}
+.ae-nav .nav-link {
+  color: #cdd8e4;
+  font-weight: 500;
+  padding: .4rem .9rem;
+  border-radius: 8px;
+  transition: color .15s, background .15s;
+}
+.ae-nav .nav-link:hover,
+.ae-nav .nav-link.active { color: #fff; background: rgba(255,255,255,.08); }
+
+.ae-points {
+  display: inline-flex;
+  align-items: center;
+  gap: .35rem;
+  background: rgba(242,169,0,.15);
+  border: 1px solid rgba(242,169,0,.45);
+  color: var(--gold);
+  font-weight: 600;
+  padding: .35rem .8rem;
+  border-radius: 999px;
+  font-size: .95rem;
+}
+.ae-points-icon { color: var(--gold); }
+.ae-points-label { color: #cdd8e4; font-weight: 500; font-size: .8rem; }
+.navbar-toggler { border-color: rgba(255,255,255,.3); }
+
+/* ---------- HERO ---------- */
+.ae-hero {
+  background:
+    radial-gradient(1200px 400px at 85% -10%, rgba(23,138,138,.35), transparent 60%),
+    linear-gradient(135deg, var(--ink) 0%, var(--ink-2) 60%, var(--teal-dk) 130%);
+  color: #fff;
+  padding: 4rem 0 4.5rem;
+  position: relative;
+  overflow: hidden;
+}
+.ae-hero::after {
+  content: "";
+  position: absolute; inset: 0;
+  background-image: radial-gradient(rgba(255,255,255,.06) 1px, transparent 1px);
+  background-size: 22px 22px;
+  opacity: .5;
+  pointer-events: none;
+}
+.ae-hero .container { position: relative; z-index: 1; }
+.ae-eyebrow {
+  text-transform: uppercase;
+  letter-spacing: .18em;
+  font-size: .78rem;
+  font-weight: 600;
+  color: var(--gold);
+  margin-bottom: .8rem;
+}
+.ae-hero h1 {
+  font-size: clamp(2rem, 4.5vw, 3.2rem);
+  font-weight: 700;
+  line-height: 1.08;
+  margin-bottom: 1rem;
+}
+.ae-hero p.lead {
+  color: #c9d6e3;
+  max-width: 620px;
+  font-size: 1.1rem;
+}
+
+/* Panel de progreso dentro del hero (elemento firma) */
+.ae-progress-card {
+  background: rgba(255,255,255,.07);
+  border: 1px solid rgba(255,255,255,.14);
+  backdrop-filter: blur(6px);
+  border-radius: var(--radius);
+  padding: 1.5rem;
+}
+.ae-progress-card .level-badge {
+  display: inline-flex; align-items: center; gap: .5rem;
+  background: linear-gradient(135deg, var(--gold), var(--gold-dk));
+  color: #3a2a00;
+  font-weight: 700;
+  padding: .3rem .8rem;
+  border-radius: 999px;
+  font-size: .85rem;
+}
+.ae-stat-row { display: flex; gap: 1.2rem; margin-top: 1.2rem; flex-wrap: wrap; }
+.ae-stat { flex: 1 1 90px; }
+.ae-stat .num { font-family: var(--font-display); font-size: 1.8rem; font-weight: 700; color: #fff; }
+.ae-stat .lbl { font-size: .8rem; color: #b7c6d6; }
+
+.ae-bar {
+  height: 10px; border-radius: 999px;
+  background: rgba(255,255,255,.15);
+  overflow: hidden; margin-top: .5rem;
+}
+.ae-bar > span {
+  display: block; height: 100%;
+  background: linear-gradient(90deg, var(--teal), var(--gold));
+  border-radius: 999px;
+  transition: width .6s ease;
+}
+
+/* ---------- BOTONES ---------- */
+.btn-ae {
+  background: var(--gold);
+  color: #3a2a00;
+  font-weight: 600;
+  border: none;
+  padding: .7rem 1.4rem;
+  border-radius: 10px;
+  transition: transform .12s, box-shadow .15s, background .15s;
+}
+.btn-ae:hover { background: var(--gold-dk); color:#fff; transform: translateY(-2px); box-shadow: 0 8px 20px rgba(242,169,0,.35); }
+.btn-ghost {
+  background: transparent;
+  color: #fff;
+  border: 1px solid rgba(255,255,255,.4);
+  font-weight: 600;
+  padding: .7rem 1.4rem;
+  border-radius: 10px;
+}
+.btn-ghost:hover { background: rgba(255,255,255,.12); color:#fff; }
+.btn-teal { background: var(--teal); color:#fff; font-weight:600; border:none; border-radius:10px; padding:.6rem 1.3rem; transition: background .15s, transform .12s; }
+.btn-teal:hover { background: var(--teal-dk); color:#fff; transform: translateY(-1px); }
+
+/* ---------- SECCIONES ---------- */
+.ae-section { padding: 3.5rem 0; }
+.ae-section-head { margin-bottom: 2rem; }
+.ae-section-head .ae-eyebrow { color: var(--teal); }
+.ae-section-head h2 { color: var(--ink); font-size: clamp(1.5rem,3vw,2rem); font-weight: 700; }
+.ae-section-head p { color: var(--muted); max-width: 640px; }
+
+/* ---------- TARJETAS DE MATERIA ---------- */
+.ae-card {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 1.5rem;
+  height: 100%;
+  transition: transform .18s, box-shadow .18s, border-color .18s;
+  position: relative;
+  overflow: hidden;
+}
+.ae-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-hover); border-color: transparent; }
+.ae-card .subject-icon {
+  width: 52px; height: 52px; border-radius: 14px;
+  display: grid; place-items: center;
+  font-size: 1.5rem; color: #fff; margin-bottom: 1rem;
+}
+.ae-card h3 { color: var(--ink); font-size: 1.2rem; font-weight: 600; margin-bottom: .35rem; }
+.ae-card .subj-desc { color: var(--muted); font-size: .92rem; min-height: 42px; }
+.ae-card .card-meta { display:flex; align-items:center; justify-content:space-between; margin-top: 1.1rem; }
+.ae-card .lessons-count { font-size: .85rem; color: var(--muted); }
+
+/* Anillo de progreso (SVG) */
+.ring { transform: rotate(-90deg); }
+.ring-bg { fill:none; stroke: var(--line); stroke-width: 5; }
+.ring-fg { fill:none; stroke: var(--teal); stroke-width: 5; stroke-linecap: round; transition: stroke-dashoffset .6s ease; }
+.ring-wrap { position: relative; width: 46px; height: 46px; }
+.ring-label { position:absolute; inset:0; display:grid; place-items:center; font-size:.72rem; font-weight:600; color: var(--ink); }
+
+/* ---------- LECCIÓN ---------- */
+.lesson-hero { background: var(--ink); color:#fff; padding: 2.2rem 0; }
+.lesson-hero .crumb { color:#9db2c6; font-size:.85rem; }
+.lesson-hero .crumb a { color:#9db2c6; }
+.lesson-hero .crumb a:hover { color:#fff; }
+.lesson-hero h1 { font-size: clamp(1.5rem,3vw,2.1rem); font-weight:700; margin:.4rem 0 0; }
+
+.lesson-body { padding: 2.5rem 0 3.5rem; }
+.video-wrap { position: relative; padding-top: 56.25%; border-radius: var(--radius); overflow:hidden; box-shadow: var(--shadow); background:#000; }
+.video-wrap iframe { position:absolute; inset:0; width:100%; height:100%; border:0; }
+
+.doc-item {
+  display:flex; align-items:center; gap:.9rem;
+  background: var(--surface); border:1px solid var(--line);
+  border-radius: var(--radius-sm); padding: .9rem 1.1rem;
+  transition: border-color .15s, box-shadow .15s;
+}
+.doc-item:hover { border-color: var(--teal); box-shadow: var(--shadow); }
+.doc-ico { width:40px;height:40px;border-radius:10px;background:rgba(23,138,138,.12);color:var(--teal);display:grid;place-items:center;font-size:1.1rem;flex:0 0 auto;}
+.doc-item .doc-name { font-weight:600; color:var(--ink); }
+.doc-item .doc-type { font-size:.8rem; color:var(--muted); }
+
+.lesson-text { line-height: 1.7; color: #2a3b4c; }
+.lesson-text h4 { color: var(--ink); margin-top: 1.6rem; }
+
+/* ---------- CUESTIONARIO ---------- */
+.quiz-card { background: var(--surface); border:1px solid var(--line); border-radius: var(--radius); padding: 1.8rem; box-shadow: var(--shadow); }
+.quiz-progress { font-size:.85rem; color: var(--muted); font-weight:600; }
+.quiz-question { font-size:1.15rem; font-weight:600; color: var(--ink); margin: .6rem 0 1.2rem; font-family: var(--font-display); }
+.quiz-opt {
+  display:block; width:100%; text-align:left;
+  background:#fff; border:1.5px solid var(--line); color: var(--text);
+  border-radius: var(--radius-sm); padding: .85rem 1.1rem; margin-bottom:.7rem;
+  font-weight:500; transition: border-color .12s, background .12s, transform .1s;
+}
+.quiz-opt:hover:not(:disabled) { border-color: var(--teal); transform: translateX(2px); }
+.quiz-opt.correct { border-color: var(--success); background: rgba(46,158,107,.1); color:#1c6b47; }
+.quiz-opt.incorrect { border-color: var(--danger); background: rgba(214,69,69,.08); color:#a52d2d; }
+.quiz-opt:disabled { cursor: default; }
+.quiz-feedback { border-radius: var(--radius-sm); padding: .9rem 1.1rem; margin-top: .3rem; font-size:.95rem; }
+.quiz-feedback.ok { background: rgba(46,158,107,.1); color:#1c6b47; border:1px solid rgba(46,158,107,.3); }
+.quiz-feedback.no { background: rgba(214,69,69,.08); color:#a52d2d; border:1px solid rgba(214,69,69,.3); }
+
+.quiz-result { text-align:center; padding: 1rem; }
+.quiz-score-ring { font-family: var(--font-display); font-size: 3rem; font-weight:700; color: var(--teal); }
+
+/* ---------- INSIGNIAS ---------- */
+.badge-grid { display:grid; grid-template-columns: repeat(auto-fill, minmax(150px,1fr)); gap: 1rem; }
+.badge-tile {
+  background: var(--surface); border:1px solid var(--line);
+  border-radius: var(--radius); padding: 1.3rem 1rem; text-align:center;
+  transition: transform .15s;
+}
+.badge-tile.earned { border-color: var(--gold); box-shadow: 0 6px 18px rgba(242,169,0,.18); }
+.badge-tile.locked { opacity: .55; filter: grayscale(.6); }
+.badge-tile:hover { transform: translateY(-3px); }
+.badge-emoji { font-size: 2.2rem; display:block; margin-bottom:.4rem; }
+.badge-tile .b-name { font-weight:600; color: var(--ink); font-size:.92rem; }
+.badge-tile .b-desc { font-size:.78rem; color: var(--muted); margin-top:.2rem; }
+
+/* ---------- PANEL / DASHBOARD ---------- */
+.stat-card { background: var(--surface); border:1px solid var(--line); border-radius: var(--radius); padding: 1.4rem; height:100%; }
+.stat-card .big { font-family: var(--font-display); font-size:2.2rem; font-weight:700; color: var(--ink); line-height:1; }
+.stat-card .cap { color: var(--muted); font-size:.9rem; margin-top:.3rem; }
+.stat-card .ico { font-size:1.4rem; }
+
+.subj-progress-row { display:flex; align-items:center; gap:1rem; padding:.9rem 0; border-bottom:1px solid var(--line); }
+.subj-progress-row:last-child { border-bottom:none; }
+.subj-progress-row .name { font-weight:600; color: var(--ink); flex: 0 0 auto; }
+.subj-progress-row .track { flex:1 1 auto; }
+
+/* ---------- TOAST DE LOGRO ---------- */
+.ae-toast {
+  position: fixed; right: 20px; bottom: 20px; z-index: 1080;
+  background: var(--ink); color:#fff;
+  border-left: 4px solid var(--gold);
+  border-radius: 12px; padding: .9rem 1.2rem;
+  box-shadow: 0 12px 40px rgba(0,0,0,.3);
+  display:flex; align-items:center; gap:.8rem;
+  transform: translateY(140%); opacity:0;
+  transition: transform .4s cubic-bezier(.2,.8,.2,1), opacity .4s;
+  max-width: 320px;
+}
+.ae-toast.show { transform: translateY(0); opacity:1; }
+.ae-toast .t-emoji { font-size:1.6rem; }
+.ae-toast .t-title { font-weight:700; font-family:var(--font-display); font-size:.95rem; }
+.ae-toast .t-sub { font-size:.82rem; color:#c9d6e3; }
+
+/* ---------- FOOTER ---------- */
+.ae-footer { background: var(--ink); color:#c9d6e3; padding: 2rem 0; margin-top: 2rem; text-align:center; }
+.ae-footer p { font-size:.9rem; }
+.ae-footer-sub { color:#7f95ab; font-size:.82rem !important; }
+
+/* ---------- BADGE DE ESTADO (completado) ---------- */
+.done-pill { display:inline-flex; align-items:center; gap:.3rem; background:rgba(46,158,107,.12); color:var(--success); font-size:.78rem; font-weight:600; padding:.2rem .6rem; border-radius:999px; }
+
+/* ---------- LECCIÓN: lista dentro de materia ---------- */
+.lesson-list-item {
+  display:flex; align-items:center; gap:1rem;
+  background: var(--surface); border:1px solid var(--line);
+  border-radius: var(--radius-sm); padding: 1rem 1.2rem; margin-bottom:.8rem;
+  transition: border-color .15s, box-shadow .15s, transform .12s;
+}
+.lesson-list-item:hover { border-color: var(--teal); box-shadow: var(--shadow); transform: translateX(3px); }
+.lesson-num { width:34px;height:34px;border-radius:9px;background:var(--ink);color:#fff;display:grid;place-items:center;font-weight:600;font-family:var(--font-display);flex:0 0 auto; }
+.lesson-list-item.done .lesson-num { background: var(--success); }
+.lesson-list-item .l-title { font-weight:600; color: var(--ink); }
+.lesson-list-item .l-meta { font-size:.82rem; color: var(--muted); }
+
+/* ---------- UTIL ---------- */
+.text-teal { color: var(--teal) !important; }
+.text-ink { color: var(--ink) !important; }
+.mw-720 { max-width: 720px; }
+
+/* ---------- ACCESIBILIDAD ---------- */
+:focus-visible { outline: 3px solid var(--gold); outline-offset: 2px; border-radius: 4px; }
+@media (prefers-reduced-motion: reduce) {
+  * { transition: none !important; animation: none !important; }
+}
+
+/* ---------- RESPONSIVE ---------- */
+@media (max-width: 991px) {
+  .ae-points { margin-top:.6rem; }
+  .ae-hero { padding: 3rem 0; }
+}
+@media (max-width: 575px) {
+  .ae-section { padding: 2.5rem 0; }
+  .ae-stat .num { font-size:1.5rem; }
+}
